@@ -1,0 +1,6 @@
+{
+  "name": "Frontier",
+  "weight": 2,
+  "short_description": "A standalone app for rendering spatial audio",
+  "coverImage": "../../assets/create_Frontier.svg"
+}

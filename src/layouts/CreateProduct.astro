@@ -1,0 +1,66 @@
+---
+import { Image } from "astro:assets";
+import DownloadButton from "../components/downloader/DownloadButton.astro";
+import DownloadSelect from "../components/downloader/DownloadSelect.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ContentContainer from "../components/ContentContainer.astro";
+import ImageLoader from "../components/image-loader/ImageLoader.astro";
+
+const { product } = Astro.props;
+---
+
+<BaseLayout title=`xpans | ${product.data.name}`>
+    <ContentContainer>
+        <div class="product-info">
+            <div class="product-description">
+                <div class="product-description-text">
+                    <h2>{product.data.name}</h2>
+                    <p>{product.data.long_description}</p>
+                </div>
+                <div class="download-section">
+                    <DownloadSelect
+                        cdn_url={product.data.download_info.cdn_root}
+                        downloads={product.data.download_info.downloads}
+                    />
+                    <DownloadButton />
+                </div>
+            </div>
+            <ImageLoader>
+                <Image src={product.data.coverImage} alt="" />
+            </ImageLoader>
+        </div>
+    </ContentContainer>
+</BaseLayout>
+<style lang="scss">
+    @use "../styles/xpans";
+    .product-info {
+        display: flex;
+        gap: 0.8rem;
+        img {
+            border-radius: xpans.$border-radius;
+            height: auto;
+        }
+        .product-description {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 100%;
+        }
+    }
+    @media screen and (max-width: 60rem) {
+        .product-info {
+            flex-wrap: wrap-reverse;
+        }
+    }
+    select,
+    button {
+        font-family: var(--spaceGrotesk);
+        font-size: 1rem;
+        line-height: 1.4;
+    }
+
+    select {
+        @include xpans.compensated-padding(0.8em);
+        border-radius: 0.8em;
+    }
+</style>

@@ -1,0 +1,29 @@
+{
+  "cdn_root": "https://download.xpans.audio/essential-plugins",
+  "downloads": [
+    {
+      "name": "Windows (x86_64)",
+      "path": "xpans Essential Plugins v0.1.0 (Windows x86_64).zip"
+    },
+    {
+      "name": "Windows (aarch64)",
+      "path": "xpans Essential Plugins v0.1.0 (Windows aarch64).zip"
+    },
+    {
+      "name": "macOS (Apple Silicon)",
+      "path": "Install xpans Essential Plugins v0.1.0 (aarch64).pkg"
+    },
+    {
+      "name": "macOS (Intel)",
+      "path": "Install xpans Essential Plugins v0.1.0 (x86_64).pkg"
+    },
+    {
+      "name": "Linux (x86_64)",
+      "path": "xpans Essential Plugins v0.1.0 (Linux x86_64).tar.xz"
+    },
+    {
+      "name": "Linux (aarch64)",
+      "path": "xpans Essential Plugins v0.1.0 (Linux aarch64).tar.xz"
+    }
+  ]
+}

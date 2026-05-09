@@ -1,0 +1,54 @@
+---
+import ContentContainer from "../components/ContentContainer.astro";
+import BaseLayout from "./BaseLayout.astro";
+const { title } = Astro.props;
+---
+
+<BaseLayout title=`xpans | ${title}`>
+    <header class="section-header">
+        <ContentContainer>
+            <div class="title-container">
+                <h1 class="section-title">
+                    {title}
+                </h1>
+            </div>
+        </ContentContainer>
+    </header>
+    <ContentContainer><slot /></ContentContainer>
+
+    <style lang="scss">
+        @use "../styles/xpans";
+        @keyframes fade-in {
+            0% {
+                filter: blur(0.4rem);
+                opacity: 0;
+                transform: scale(1.04);
+            }
+            100% {
+                filter: blur(0);
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        .section-header {
+            height: 8rem;
+            background: linear-gradient(
+                to bottom left,
+                transparent 50%,
+                xpans.$accent-purple
+            );
+        }
+        .title-container {
+            @include xpans.content-width(1200px);
+            position: relative;
+            top: 3rem;
+        }
+        .section-title {
+            width: min-content;
+            animation-name: fade-in;
+            animation-duration: 250ms;
+            animation-timing-function: ease-in-out;
+            animation-fill-mode: forwards;
+        }
+    </style>
+</BaseLayout>

@@ -1,0 +1,22 @@
+<div id="menu-overlay" inert></div>
+
+<style lang="scss">
+    @use "../../styles/xpans";
+    @use "../../styles/menu-bar";
+    div {
+        background-color: xpans.$extra-dark-purple-transparent;
+        position: fixed;
+        inset: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 8;
+        transition:
+            background-color 250ms ease-in-out,
+            backdrop-filter 250ms ease-in-out;
+        backdrop-filter: blur(0rem);
+        &.show {
+            background-color: xpans.$extra-dark-purple-translucent;
+            backdrop-filter: blur(0.8rem);
+        }
+    }
+</style>

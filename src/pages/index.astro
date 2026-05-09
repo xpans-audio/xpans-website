@@ -1,0 +1,62 @@
+---
+import ContentContainer from "../components/ContentContainer.astro";
+import HeroSection from "../components/home-page/HeroSection.astro";
+import InfoBlock from "../components/home-page/InfoBlock.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="xpans" scrollWrapper={true} animateMenuBar={true}>
+    <ContentContainer>
+        <HeroSection />
+        <div>
+            <InfoBlock title="source-based">
+                In xpans, every sound is a virtual audio source that has its own
+                3D position, size, and more. By giving sounds these properties,
+                your music, movies, and games become much more immersive and
+                interactive by personalizing the sound for your ears and
+                environment.
+            </InfoBlock>
+            <InfoBlock title="deep integration">
+                xpans aims to develop a fully spatialized audio production
+                workflow. Our Spatial Property Exchange (SPE) protocol lets
+                audio plugins consider where audio sources are in virtual space,
+                creating immersive effects that reinforce the spatial qualities
+                of your mix.
+            </InfoBlock>
+            <InfoBlock title="anywhere and everywhere">
+                xpans is built for all listening formats, not just surround
+                sound. Spatial audio scenes can adapt to current and future
+                rendering techniques, and listeners can enjoy an immersive
+                experience from anywhere in the room if their setup allows.
+            </InfoBlock>
+            <InfoBlock title="free and open, forever">
+                xpans is and always will be free and open-source. What you
+                create in the ecosystem will always belong to you, and you can
+                always extend and modify xpans for your own needs.
+            </InfoBlock>
+        </div>
+    </ContentContainer>
+</BaseLayout>
+
+<style lang="scss">
+    @keyframes fade-in {
+        0% {
+            opacity: 0;
+            transform: translateY(4rem);
+        }
+        50% {
+            opacity: 0;
+            transform: translateY(4rem);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0rem);
+        }
+    }
+    div {
+        animation-name: fade-in;
+        animation-timing-function: ease-in-out;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+    }
+</style>

@@ -1,0 +1,113 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "./BaseLayout.astro";
+import { Image } from "astro:assets";
+import ContentContainer from "../components/ContentContainer.astro";
+import IntrapageLinks from "../components/intrapage-links/IntrapageLinks.astro";
+import "../styles/news-article.scss";
+import ImageLoader from "../components/image-loader/ImageLoader.astro";
+import { formatArticleDate } from "../build-scripts/format-article-date";
+
+export async function getStaticPaths() {
+    const news = await getCollection("news");
+    return news.map((article) => ({
+        params: { id: article.id },
+        props: { article },
+    }));
+}
+const { article } = Astro.props;
+---
+
+<BaseLayout>
+    <ContentContainer>
+        <div class="news-article">
+            <div>
+                {
+                    article.data.coverImage && (
+                        <ImageLoader>
+                            <Image
+                                class="cover-image"
+                                src={article.data.coverImage}
+                                alt=""
+                            />
+                        </ImageLoader>
+                    )
+                }
+                <h1>{article.data.title}</h1>
+                <p class="date">
+                    {formatArticleDate(article.data.pubDate)} by {
+                        article.data.authors
+                    }
+                </p>
+                <div class="get-intrapage-links article-content">
+                    <slot />
+                </div>
+            </div>
+            <div class="link-panel">
+                <div class="links-inner">
+                    <IntrapageLinks />
+                </div>
+            </div>
+        </div>
+    </ContentContainer>
+</BaseLayout>
+<style lang="scss">
+    @use "../styles/xpans";
+    @use "../styles/menu-bar";
+    h1 {
+        font-size: 2.5rem;
+        margin-top: xpans.compensated-length(1.6rem * 2, 3rem);
+        margin-bottom: xpans.space-length(1.6rem, 4rem, 1rem);
+    }
+    .date {
+        margin: 0;
+    }
+    .news-article {
+        margin-top: 0.8rem;
+        display: flex;
+        gap: 0.8rem;
+    }
+    .cover-image {
+        border-radius: xpans.$border-radius;
+        width: 100%;
+        height: auto;
+    }
+    .link-panel {
+        position: sticky;
+        top: menu-bar.$menu-bar-height;
+        width: 16rem;
+        height: calc(100vh - menu-bar.$menu-bar-height - 0.8rem);
+    }
+    .links-inner {
+        scrollbar-color: white;
+        scrollbar-width: thin;
+        height: 100%;
+        overflow-y: scroll;
+    }
+    @media screen and (max-width: 50rem) {
+        .link-panel {
+            display: none;
+        }
+    }
+</style>
+
+<style lang="scss" is:global>
+    @use "../styles/xpans";
+    .article-content {
+        h2 {
+            font-weight: 800;
+            margin-top: xpans.space-length(1.6rem * 2, 2rem, 1rem);
+            margin-bottom: xpans.space-length(1.6rem, 2rem, 1rem);
+        }
+        p {
+            margin-top: 0;
+            margin-bottom: xpans.space-length(1.6rem, 1rem, 1rem);
+        }
+        a:any-link {
+            color: xpans.$extra-light-purple;
+            text-decoration: underline;
+            text-decoration-color: xpans.$extra-light-purple-translucent;
+            text-decoration-thickness: (0.8rem * 0.125);
+        }
+    }
+</style>

@@ -1,0 +1,45 @@
+---
+import InfoCard from "../components/InfoCard.astro";
+import SectionBase from "./SectionBase.astro";
+import GridListTwo from "../components/grid-list/GridListTwo.astro";
+// import { Image } from "astro:assets";
+import RoadmapImage from "../assets/develop_Roadmap.svg";
+import DocumentationImage from "../assets/develop_Documentation.svg";
+import SourceCodeImage from "../assets/develop_SourceCode.svg";
+import GuidelinesImage from "../assets/develop_Guidelines.svg";
+---
+
+<SectionBase title="develop">
+    <GridListTwo>
+        <InfoCard
+            title="source code"
+            link="https://github.com/xpans-audio"
+            linkIsExternal
+        >
+            Contribute to xpans' source code and experiment with our
+            technologies in your own projects!
+            <SourceCodeImage slot="image" width="8rem" height="8rem" />
+        </InfoCard>
+        <InfoCard title="documentation" link="https://docs.xpans.audio/">
+            Reading the xpans Documentation Book can provide insight on how the
+            ecosystem works on a larger scale.
+            <DocumentationImage slot="image" width="100%" height="100%" />
+        </InfoCard>
+        <InfoCard
+            title="roadmap"
+            link="https://docs.xpans.audio/ecosystem/roadmap"
+        >
+            Looking at the project roadmap should inform you of the overall
+            direction of xpans.
+            <RoadmapImage slot="image" width="8rem" height="8rem" />
+        </InfoCard>
+        <InfoCard
+            title="guidelines"
+            link="https://docs.xpans.audio/contribution-guidelines"
+        >
+            Ensure your contributions are easy for other developers to
+            understand and critique.
+            <GuidelinesImage slot="image" width="8rem" height="8rem" />
+        </InfoCard>
+    </GridListTwo>
+</SectionBase>

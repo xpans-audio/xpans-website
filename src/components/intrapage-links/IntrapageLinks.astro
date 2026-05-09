@@ -1,0 +1,35 @@
+<script src="./script/intrapage-links.ts"></script>
+<menu id="intrapage-links"></menu>
+<style lang="scss">
+    menu {
+        width: 16rem;
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+    }
+</style>
+<style lang="scss" is:global>
+    @use "../../styles/xpans";
+    .intrapage-link {
+        transition: transform 250ms ease;
+        &:has(> a:active) {
+            transform: scale(xpans.$active-react-scale);
+        }
+        a:any-link {
+            border-radius: 0.8em;
+            @include xpans.compensated-padding(0.8em);
+            display: block;
+            text-decoration: none;
+            color: xpans.$extra-light-purple;
+            box-shadow: inset 0 0 0 xpans.$accent-purple;
+            transition:
+                box-shadow 250ms ease-in-out,
+                background-color 250ms ease-in-out;
+        }
+        a:hover,
+        a:focus {
+            background-color: xpans.$dark-purple;
+            box-shadow: inset 0 0 0.8em xpans.$accent-purple;
+        }
+    }
+</style>

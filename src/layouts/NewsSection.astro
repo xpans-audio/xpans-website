@@ -1,0 +1,85 @@
+---
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+import GridList from "../components/grid-list/GridList.astro";
+import SectionBase from "../layouts/SectionBase.astro";
+import ImageLoader from "../components/image-loader/ImageLoader.astro";
+import ScrollTransition from "../components/scroll-transition/ScrollTransition.astro";
+import { getPathPrefix } from "../build-scripts/get-path-prefix";
+import { formatArticleDate } from "../build-scripts/format-article-date";
+const news = (await getCollection("news")).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+const prefix = getPathPrefix("/news/");
+---
+
+<SectionBase title="news">
+    <GridList>
+        {
+            news.map((article) => (
+                <ScrollTransition>
+                    <a href={prefix + `${article.id}`}>
+                        <article>
+                            <div class="cover-image">
+                                <ImageLoader>
+                                    {article.data.coverImage && (
+                                        <Image
+                                            src={article.data.coverImage}
+                                            alt=""
+                                        />
+                                    )}
+                                </ImageLoader>
+                            </div>
+                            <h2>{article.data.title}</h2>
+                            <p>{article.data.description}</p>
+                            <p class="date">
+                                {formatArticleDate(article.data.pubDate)}
+                            </p>
+                        </article>
+                    </a>
+                </ScrollTransition>
+            ))
+        }
+    </GridList>
+</SectionBase>
+<style lang="scss">
+    @use "../styles/xpans";
+    a:any-link {
+        color: xpans.$extra-light-purple;
+        text-decoration: none;
+    }
+    a:active article {
+        filter: xpans.$active-filter;
+        transform: scale(xpans.$active-react-scale);
+    }
+    article {
+        background-color: xpans.$dark-purple;
+        border-radius: xpans.$border-radius;
+        transition:
+            transform 250ms ease,
+            filter 250ms ease;
+        h2 {
+            font-size: 1.5rem;
+            margin-left: 1.6rem;
+            margin-top: 0;
+            padding-top: xpans.compensated-length(1.6rem, 1.5rem);
+            margin-bottom: xpans.space-length(1.6rem, 1.5rem, 1rem);
+        }
+        p {
+            margin-top: 0;
+            margin-bottom: xpans.space-length(1.6rem, 1rem, 1rem);
+            margin-left: 1.6rem;
+            width: 75%;
+        }
+        .date {
+            padding-bottom: xpans.compensated-length(1.6rem, 1rem);
+            opacity: 0.707;
+        }
+        img {
+            border-radius: xpans.$border-radius;
+            width: 100%;
+            height: auto;
+            user-select: none;
+        }
+    }
+</style>

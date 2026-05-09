@@ -1,0 +1,75 @@
+---
+import MenuItem from "./MenuItem.astro";
+const menuLinks = [
+    { title: "news", path: "/news" },
+    { title: "create", path: "/create" },
+    { title: "develop", path: "/develop" },
+];
+---
+
+<div id="menu-container">
+    <menu>
+        {
+            menuLinks.map((item) => (
+                <MenuItem link_path={item.path}>{item.title}</MenuItem>
+            ))
+        }
+    </menu>
+</div>
+
+<style lang="scss">
+    @use "../../styles/xpans";
+    @use "../../styles/menu-bar";
+    div {
+        z-index: 9;
+    }
+    menu {
+        padding: 0;
+        list-style-type: none;
+        display: flex;
+        cursor: default;
+        gap: 0.8em;
+    }
+    @media screen and (max-width: 50rem) {
+        div {
+            background-color: xpans.$extra-dark-purple-transparent;
+            position: fixed;
+            top: 0;
+            right: -16rem;
+            width: min(16rem, calc(100vw - 9.5rem));
+            height: 100vh;
+            filter: blur(0.8rem);
+            backdrop-filter: blur(0rem);
+            .link:any-link {
+                color: xpans.$accent-purple;
+                transition:
+                    color 250ms ease,
+                    text-decoration-color 250ms ease;
+            }
+            transition:
+                right 250ms ease,
+                background-color 250ms ease,
+                backdrop-filter 250ms ease,
+                filter 250ms ease;
+            &.show {
+                right: 0;
+                .link:any-link {
+                    color: xpans.$extra-light-purple;
+                }
+                background-color: xpans.$extra-dark-purple-translucent;
+                filter: blur(0rem);
+                backdrop-filter: blur(0.8rem);
+            }
+        }
+        menu {
+            align-items: flex-start;
+            flex-direction: column;
+            gap: 1.6rem;
+            margin-top: calc(
+                1.6rem + menu-bar.$menu-bar-height -
+                    xpans.$line-height-difference
+            );
+            margin-left: 1.6rem;
+        }
+    }
+</style>

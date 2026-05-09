@@ -1,0 +1,64 @@
+---
+import HeroLight from "./HeroLight.astro";
+
+const { posX, posY } = Astro.props;
+---
+
+<HeroLight
+    radius="8rem"
+    blur="0.5rem"
+    opacity="1"
+    delay="1s"
+    duration="1s"
+    posX={posX}
+    posY={posY}
+    posZ="0rem"
+/>
+<HeroLight
+    radius="16rem"
+    blur="1rem"
+    opacity="0.5"
+    delay="500ms"
+    duration="1s"
+    posX={posX}
+    posY={posY}
+    posZ="-1rem"
+/>
+<HeroLight
+    radius="32rem"
+    blur="2rem"
+    opacity="0.25"
+    delay="250ms"
+    duration="1s"
+    posX={posX}
+    posY={posY}
+    posZ="-2rem"
+/>
+<HeroLight
+    radius="64rem"
+    blur="4rem"
+    opacity="0.125"
+    delay="0s"
+    duration="1s"
+    posX={posX}
+    posY={posY}
+    posZ="-3rem"
+/>
+<!-- <HeroLight
+    radius="64rem"
+    blur="2.5rem"
+    opacity="0.0625"
+    delay="250ms"
+    posX={posX}
+    posY={posY}
+    posZ="-4rem"
+/> -->
+<!-- <HeroLight
+    radius="56rem"
+    blur="3rem"
+    opacity="0.0625"
+    delay="300ms"
+    posX={posX}
+    posY={posY}
+    posZ="-5rem"
+/> -->

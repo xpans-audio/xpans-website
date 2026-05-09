@@ -1,0 +1,24 @@
+---
+const { vanish } = Astro.props;
+---
+
+<script src="./script/scroll.js"></script>
+<span class:list={["viewport-observe", { "viewport-vanish": vanish }]}>
+    <slot />
+</span>
+<style>
+    .viewport-observe {
+        opacity: 0;
+        filter: blur(0.4em) brightness(0);
+        transform: scale(0.95);
+        transition:
+            transform 250ms ease,
+            opacity 250ms ease,
+            filter 250ms ease;
+    }
+    .viewport-observe.viewport-in {
+        opacity: 1;
+        filter: none;
+        transform: none;
+    }
+</style>

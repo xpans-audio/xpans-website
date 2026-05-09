@@ -1,0 +1,16 @@
+<div>
+    <slot />
+</div>
+
+<style lang="scss">
+    div {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        @media screen and (max-width: 50rem) {
+            grid-template-columns: 100%;
+        }
+        row-gap: 0.8rem;
+        column-gap: 1.6rem;
+        margin-top: 0.8rem;
+    }
+</style>

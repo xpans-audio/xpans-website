@@ -1,0 +1,52 @@
+---
+type Download = { name: string; path: string };
+const { cdn_url, downloads } = Astro.props;
+function getDownloadPath(download: Download): string {
+    return cdn_url + "/" + download.path;
+}
+import DropdownArrow from "../../assets/dropdownArrow.svg";
+import { urlFromPath } from "../../build-scripts/url-from-path";
+---
+
+<div class="custom-select">
+    <select id="download-select">
+        {
+            downloads.map((download: Download) => (
+                <option value={urlFromPath(getDownloadPath(download))}>
+                    {download.name}
+                </option>
+            ))
+        }
+    </select>
+    <DropdownArrow width="1rem" height="1rem" />
+</div>
+<style lang="scss">
+    @use "../../styles/xpans";
+    select {
+        @include xpans.compensated-padding(0.8em);
+        border-radius: 0.8em;
+        font-family: var(--spaceGrotesk);
+        font-size: 1rem;
+        line-height: 1.4;
+        width: 100%;
+        background-color: xpans.$dark-purple;
+        color: xpans.$extra-light-purple;
+        appearance: none;
+        border: 0;
+        outline: 0 solid xpans.$extra-light-purple;
+        transition: outline 150ms ease-in-out;
+    }
+    select:hover {
+        outline: 0.125rem solid xpans.$extra-light-purple;
+    }
+    .custom-select {
+        position: relative;
+    }
+    svg {
+        pointer-events: none;
+        position: absolute;
+        top: 0.7rem;
+        margin: 0;
+        right: 0.8rem;
+    }
+</style>

@@ -1,0 +1,16 @@
+@use "menu-bar";
+@use "xpans";
+h2 {
+    margin: 0;
+    text-shadow: 1.6em 0 1.6em transparent;
+    transition: text-shadow 250ms ease-in-out;
+}
+h2:target {
+    text-shadow: 0 0 0.2em xpans.$accent-purple;
+}
+:target::before {
+    content: "";
+    display: block;
+    height: menu-bar.$menu-bar-height + 0.8rem;
+    margin-top: -(menu-bar.$menu-bar-height + 0.8rem);
+}

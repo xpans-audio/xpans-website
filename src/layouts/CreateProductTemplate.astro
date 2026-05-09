@@ -1,0 +1,91 @@
+---
+import DownloadButton from "../components/downloader/DownloadButton.astro";
+import DownloadSelect from "../components/downloader/DownloadSelect.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ContentContainer from "../components/ContentContainer.astro";
+import ImageLoader from "../components/image-loader/ImageLoader.astro";
+// import BackButton from "../components/BackButton.astro";
+
+const { product, downloadInfo } = Astro.props;
+---
+
+<BaseLayout title=`xpans | ${product.name}`>
+    <ContentContainer>
+        <div class="spacer">
+            <!-- <BackButton parentPath="/create/" parentName="create" /> -->
+        </div>
+        <div class="product-info">
+            <div class="product-description">
+                <div class="product-description-text">
+                    <h2>{product.name}</h2>
+                    <slot name="description" />
+                </div>
+                <div class="download-section">
+                    <DownloadSelect
+                        cdn_url={downloadInfo.cdn_root}
+                        downloads={downloadInfo.downloads}
+                    />
+                    <DownloadButton />
+                </div>
+            </div>
+            <div class="product-image">
+                <ImageLoader>
+                    <slot name="image" />
+                </ImageLoader>
+            </div>
+        </div>
+    </ContentContainer>
+</BaseLayout>
+<style lang="scss">
+    @use "../styles/xpans";
+    .download-section {
+        margin-top: xpans.space-length(1.6rem, 1rem, 1rem);
+    }
+    h2 {
+        font-size: 2rem;
+        margin-bottom: xpans.space-length(1.6rem, 2rem, 1rem);
+        margin-top: 0;
+    }
+    .spacer {
+        height: 4rem * 0.8;
+        display: flex;
+    }
+    .product-info {
+        display: flex;
+        gap: 1.6rem;
+        .product-image {
+            border-radius: xpans.$border-radius;
+            height: auto;
+            width: 64rem;
+            img {
+                border-radius: xpans.$border-radius;
+                height: auto;
+                width: 100%;
+                object-fit: cover;
+            }
+        }
+        .product-description {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: auto;
+        }
+    }
+    @media screen and (max-width: 60rem) {
+        .product-info {
+            flex-wrap: wrap-reverse;
+        }
+    }
+</style>
+
+<style lang="scss" is:global>
+    @use "../styles/xpans";
+    .product-image {
+        img {
+            border-radius: xpans.$border-radius;
+            height: auto;
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+</style>

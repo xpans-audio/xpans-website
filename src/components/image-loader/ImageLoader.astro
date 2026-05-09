@@ -1,0 +1,12 @@
+<script src="./script/load.js"></script>
+<div class="observe-load"><slot /></div>
+
+<style lang="scss">
+    div {
+        opacity: 0;
+        transition: opacity 500ms ease;
+    }
+    div.loaded {
+        opacity: 1;
+    }
+</style>

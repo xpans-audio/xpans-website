@@ -1,0 +1,17 @@
+---
+import SectionBase from "./SectionBase.astro";
+import GridList from "../components/grid-list/GridList.astro";
+import { getCollection } from "astro:content";
+import { getPathPrefix } from "../build-scripts/get-path-prefix";
+import CreateCover from "../components/CreateCover.astro";
+const allProducts = (await getCollection("products")).sort(
+    (a, b) => a.data.weight.valueOf() - b.data.weight.valueOf(),
+);
+const prefix = getPathPrefix("/create/");
+---
+
+<SectionBase title="create">
+    <GridList>
+        {allProducts.map((product) => <CreateCover {prefix} {product} />)}
+    </GridList>
+</SectionBase>

@@ -1,0 +1,25 @@
+---
+import Wordmark from "../../assets/xpansWordmark.svg";
+---
+
+<a href="/"><Wordmark width="7.2rem" height="2.4rem" /></a>
+
+<style lang="scss">
+    @use "../../styles/xpans";
+    @use "../../styles/menu-bar";
+    a {
+        z-index: 9;
+        margin-right: auto;
+    }
+
+    svg {
+        overflow: visible;
+        transition:
+            transform 250ms ease,
+            filter 250ms ease;
+        &:active {
+            filter: xpans.$active-filter;
+            transform: scale(xpans.$active-react-scale);
+        }
+    }
+</style>

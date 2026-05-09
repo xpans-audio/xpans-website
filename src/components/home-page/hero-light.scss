@@ -1,0 +1,23 @@
+@use "../../styles/xpans";
+@mixin radius($r) {
+    width: $r;
+    height: $r;
+}
+@function translation-centered($radius, $x) {
+    @return calc($x - ($radius / 2));
+}
+
+@function translate_xyz_center($radius, $x, $y, $z) {
+    $pos_x: translation_centered($radius, $x);
+    $pos_y: translation_centered($radius, $y);
+    $pos_z: $z;
+    @return translate3d($pos_x, $pos_y, $pos_z);
+}
+
+@mixin base {
+    border: 0.125em solid xpans.$extra-dark-purple;
+    background-color: xpans.$accent-purple;
+    border-radius: 100%;
+    position: fixed;
+    transform-origin: center;
+}

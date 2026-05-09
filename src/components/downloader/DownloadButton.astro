@@ -1,0 +1,33 @@
+<script src="./script/download.js"></script>
+<a id="download-button-link" download>
+    <button id="download-button">Download</button>
+</a>
+<style lang="scss">
+    @use "../../styles/xpans";
+    button {
+        @include xpans.compensated-padding(0.8em);
+        font-family: var(--spaceGrotesk);
+        font-size: 1rem;
+        line-height: 1.4;
+        border: none;
+        outline: 0.1rem solid transparent;
+        border-radius: 0.8em;
+        background-color: xpans.$accent-purple;
+        width: 100%;
+        cursor: pointer;
+        color: xpans.$extra-light-purple;
+        text-align: left;
+        box-shadow: 0 0 0 transparent;
+        transition:
+            outline 150ms ease,
+            box-shadow 150ms ease-in-out;
+        &:hover {
+            outline: 0.125rem solid xpans.$accent-green;
+            box-shadow: 0 0 0.8em xpans.$accent-green;
+        }
+        margin-top: 0.8em;
+    }
+    #download-button-link {
+        width: 100%;
+    }
+</style>

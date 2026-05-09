@@ -1,0 +1,20 @@
+---
+const { title } = Astro.props;
+---
+
+<section><h2>{title}</h2><p><slot /></p></section>
+<style lang="scss">
+    @use "../../styles/xpans";
+    section {
+        /*padding-top: 0.8em * 2;
+        padding-bottom: 0.8em * 2;*/
+    }
+    h2 {
+        margin-bottom: xpans.space-length(1.6rem, 2rem, 1rem);
+    }
+    p {
+        margin-top: 0;
+        margin-bottom: xpans.space-length(1.6rem * 4, 1rem, 2rem);
+        max-width: 20em;
+    }
+</style>

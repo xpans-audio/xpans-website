@@ -1,0 +1,53 @@
+---
+const { radius, blur, opacity, delay, duration, posX, posY, posZ } =
+    Astro.props;
+---
+
+<div></div>
+
+<style
+    define:vars={{
+        radius: radius,
+        blur: blur,
+        opacity: opacity,
+        delay: delay,
+        duration: duration,
+        posX: posX,
+        posY: posY,
+        posZ: posZ,
+    }}
+    lang="scss"
+>
+    @use "./hero-light";
+    @use "../../styles/xpans";
+    @keyframes fadeIn {
+        0% {
+            transform: translateZ(0);
+            background-color: transparent;
+        }
+        100% {
+            transform: translateZ(var(--posZ));
+            background-color: xpans.$accent-purple;
+        }
+    }
+    div {
+        width: var(--radius);
+        height: var(--radius);
+        border-width: calc(var(--radius) / 25);
+        border-color: xpans.$extra-light-purple;
+        border-style: dotted;
+        opacity: var(--opacity);
+        border-radius: 100%;
+        position: absolute;
+        transform-origin: center;
+        filter: blur(var(--blur));
+        top: hero-light.translation-centered(var(--radius), var(--posY));
+        left: hero-light.translation-centered(var(--radius), var(--posX));
+        animation-name: fadeIn;
+        animation-timing-function: ease-in-out;
+        animation-duration: var(--duration);
+        animation-delay: var(--delay);
+        animation-fill-mode: forwards;
+        animation-direction: normal;
+    }
+</style>

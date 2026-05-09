@@ -1,0 +1,59 @@
+---
+// import ImageLoader from "./image-loader/ImageLoader.astro";
+import ScrollTransition from "./scroll-transition/ScrollTransition.astro";
+
+const { title, link, linkIsExternal } = Astro.props;
+---
+
+<!-- <script src="../scripts/transition.ts"></script> -->
+<ScrollTransition>
+    <a class:list={[{ "fade-page-out": linkIsExternal }]} href={link}>
+        <div class="card">
+            <div class="info">
+                <h2>{title}</h2>
+                <p>
+                    <slot />
+                </p>
+            </div>
+            <div class="image">
+                <slot name="image" />
+            </div>
+        </div>
+    </a>
+    <style lang="scss">
+        @use "../styles/xpans";
+        .card {
+            @include xpans.custom-compensated-padding(1.6rem, 1.5rem);
+            background-color: xpans.$dark-purple;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            border-radius: 1.6rem;
+            gap: 0.8em;
+            overflow: hidden;
+        }
+        .image {
+            margin: auto;
+            width: 4rem;
+        }
+        h2 {
+            display: inline-block;
+            font-size: 1.5rem;
+            margin: 0;
+            margin-bottom: xpans.space-length(1.6rem, 1.5rem, 1rem);
+        }
+        p {
+            margin-top: 0;
+            margin-bottom: 0;
+            padding-bottom: 0.8rem -
+                (xpans.compensated-length(0.8rem, 1.5rem) * 2);
+            max-width: 20em;
+        }
+        a {
+            &:any-link {
+                color: xpans.$extra-light-purple;
+                text-decoration: none;
+            }
+            cursor: pointer;
+        }
+    </style>
+</ScrollTransition>

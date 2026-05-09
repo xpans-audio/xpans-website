@@ -1,0 +1,25 @@
+{
+  "cdn_root": "https://download.xpans.audio/frontier",
+  "downloads": [
+    {
+      "name": "Windows (x86_64)",
+      "path": "Frontier_0.1.0_x64-setup.exe"
+    },
+    {
+      "name": "Windows (aarch64)",
+      "path": "Frontier_0.1.0_arm64-setup.exe"
+    },
+    {
+      "name": "macOS (Apple Silicon)",
+      "path": "Frontier_0.1.0_aarch64.dmg"
+    },
+    {
+      "name": "macOS (Intel)",
+      "path": "Frontier_0.1.0_x64.dmg"
+    },
+    {
+      "name": "Linux (Flatpak)",
+      "path": "Frontier.flatpakref"
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+---
+import { getBackPath } from "../build-scripts/get-back-path";
+
+const { parentPath, parentName } = Astro.props;
+
+const backPath = getBackPath(parentPath);
+---
+
+<a href={backPath}>Back {parentName ? `to ${parentName}` : ""}</a>
+
+<style lang="scss">
+    @use "../styles/xpans";
+    a {
+        z-index: 10;
+        margin: auto 0;
+        background-color: xpans.$dark-purple;
+        &:any-link {
+            color: xpans.$extra-light-purple;
+            @include xpans.compensated-padding(0.8em);
+            border-radius: 0.8em;
+            text-decoration: none;
+            outline-width: 0;
+            outline-style: solid;
+            outline-color: transparent;
+            transition:
+                filter 250ms ease,
+                box-shadow 250ms ease,
+                outline-color 250ms ease,
+                outline-width 250ms ease,
+                transform 250ms ease;
+        }
+        &:active {
+            filter: xpans.$active-filter;
+            transform: scale(xpans.$active-react-scale);
+        }
+        &:focus,
+        &:hover {
+            box-shadow: 0 0 5em xpans.$accent-purple;
+            outline-color: xpans.$extra-light-purple;
+            outline-width: 0.125rem;
+        }
+    }
+</style>

@@ -1,0 +1,62 @@
+---
+import ImageLoader from "./image-loader/ImageLoader.astro";
+import ScrollTransition from "./scroll-transition/ScrollTransition.astro";
+import { Image } from "astro:assets";
+const { prefix, product } = Astro.props;
+---
+
+<ScrollTransition vanish="true">
+    <a href={prefix + `${product.id}`}>
+        <div class="article-container">
+            <ImageLoader>
+                <Image src={product.data.coverImage} alt="" />
+            </ImageLoader>
+            <h2>{product.data.name}</h2>
+            <p>{product.data.short_description}</p>
+        </div>
+    </a>
+</ScrollTransition>
+<style lang="scss">
+    @use "../styles/xpans";
+    a:any-link {
+        transform-style: preserve-3d;
+        color: xpans.$extra-light-purple;
+        text-decoration: none;
+    }
+    a:active div {
+        filter: xpans.$active-filter;
+        transform: scale(xpans.$active-react-scale);
+    }
+
+    .article-container {
+        background-color: xpans.$dark-purple;
+        border-radius: xpans.$border-radius;
+        transition:
+            transform 250ms ease,
+            filter 250ms ease;
+        h2 {
+            font-size: 1.5rem;
+            margin-left: 1.6rem;
+            margin-top: xpans.compensated-length(1.6rem, 1.5rem);
+            margin-bottom: xpans.space-length(1.6rem, 1.5rem, 1rem);
+        }
+        p {
+            margin: 0;
+            margin-left: 1.6rem;
+            padding-bottom: xpans.compensated-length(1.6rem, 1rem);
+            width: 75%;
+        }
+    }
+</style>
+<style lang="scss" is:global>
+    @use "../styles/xpans";
+    .article-container {
+        img,
+        svg {
+            border-radius: xpans.$border-radius;
+            height: auto;
+            width: 100%;
+            user-select: none;
+        }
+    }
+</style>

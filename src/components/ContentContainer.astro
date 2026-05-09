@@ -1,0 +1,8 @@
+<div><slot /></div>
+<style lang="scss">
+    @use "../styles/xpans";
+    div {
+        transform-style: preserve-3d;
+        @include xpans.content-width(1200px);
+    }
+</style>

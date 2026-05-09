@@ -1,0 +1,53 @@
+---
+const { link_path } = Astro.props;
+---
+
+<li>
+    <a class="menu-link" href={link_path}>
+        <slot />
+    </a>
+</li>
+<style lang="scss">
+    @use "../../styles/xpans";
+    li {
+        transition: transform 250ms ease;
+        &:has(> a:active) {
+            transform: scale(xpans.$active-react-scale);
+        }
+    }
+    a {
+        &:any-link {
+            color: xpans.$extra-light-purple;
+            @include xpans.compensated-padding(0.8em);
+            border-radius: 0.8em;
+            text-decoration: none;
+            box-shadow: inset 0 0 0em xpans.$accent-purple;
+            transition:
+                filter 250ms ease-in-out,
+                box-shadow 250ms ease-in-out;
+        }
+        &:active {
+            filter: xpans.$active-filter;
+        }
+        &:focus-visible,
+        &:hover {
+            background-color: xpans.$dark-purple;
+            box-shadow: inset 0 0 1em xpans.$accent-purple;
+            text-shadow: 0 0 0.25em xpans.$accent-purple;
+        }
+    }
+    @media screen and (max-width: 50rem) {
+        a:any-link {
+            color: xpans.$accent-purple;
+            transition:
+                filter 250ms ease,
+                box-shadow 250ms ease,
+                outline-color 250ms ease,
+                outline-width 250ms ease,
+                color 250ms ease;
+            &.show {
+                color: xpans.$extra-light-purple;
+            }
+        }
+    }
+</style>

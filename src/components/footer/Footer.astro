@@ -1,0 +1,43 @@
+<footer>
+    <div>
+        <menu>
+            <li><a href="/news">news</a></li>
+            <li><a href="/create">create</a></li>
+            <li><a href="/develop">develop</a></li>
+            <!-- <li><a href="/donate">donate</a></li> -->
+        </menu>
+    </div>
+</footer>
+
+<style lang="scss">
+    @use "../../styles/xpans";
+    footer {
+        background-color: xpans.$extra-dark-purple;
+    }
+
+    div {
+        color: xpans.$extra-light-purple;
+        @include xpans.content-width(1200px);
+        margin: 0 auto;
+        padding: 1rem 0;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    menu {
+        a:any-link {
+            color: xpans.$extra-light-purple;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        gap: 1rem;
+        li {
+            margin: 1rem 0;
+        }
+    }
+</style>

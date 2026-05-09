@@ -1,0 +1,37 @@
+---
+import product from "../../data/create/essential-plugins.json";
+import downloadInfo from "../../data/downloads/essential-plugins.json";
+import infoImage from "../../assets/create_EssentialPlugins.svg";
+import CreateProductTemplate from "../../layouts/CreateProductTemplate.astro";
+import { Image } from "astro:assets";
+---
+
+<CreateProductTemplate {product} {downloadInfo}>
+    <div slot="description">
+        <p>Create in the xpans Ecosystem using your DAW of choice.</p>
+        <p>
+            All plugins are provided in VST3 and CLAP formats on all platforms.
+        </p>
+        <p>
+            Read the <a
+                href="https://docs.xpans.audio/creating/essential-plugins"
+                >documentation</a
+            > on the Essential Plugins suite for usage instructions.
+        </p>
+        <h3>Stability Statement</h3>
+        <p>
+            This software is early in development and may change drastically
+            across versions.
+        </p>
+    </div>
+    <Image slot="image" src={infoImage} alt="" />
+</CreateProductTemplate>
+
+<style lang="scss">
+    @use "../../styles/xpans";
+    a:any-link {
+        color: xpans.$extra-light-purple;
+        text-decoration: underline;
+        text-decoration-thickness: (0.8rem * 0.125);
+    }
+</style>

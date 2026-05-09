@@ -1,0 +1,72 @@
+---
+import Overlay from "./Overlay.astro";
+import Logo from "./Logo.astro";
+import MenuButton from "./MenuButton.astro";
+import MenuList from "./MenuList.astro";
+import DonateButton from "./DonateButton.astro";
+const { animate } = Astro.props;
+---
+
+<script src="./script/menu-bar.ts"></script>
+
+<header id="menu-bar" class:list={[{ animate: animate }]}>
+    <nav>
+        <Logo />
+        <MenuList />
+        <DonateButton />
+        <MenuButton />
+    </nav>
+</header>
+<Overlay />
+
+<style lang="scss">
+    @use "../../styles/xpans";
+    @use "../../styles/menu-bar";
+    @keyframes slideDown {
+        0% {
+            top: -(menu-bar.$menu-bar-height);
+            opacity: 0;
+        }
+        50% {
+            top: -(menu-bar.$menu-bar-height);
+            opacity: 0;
+        }
+        100% {
+            top: 0;
+            opacity: 1;
+        }
+    }
+    header {
+        z-index: 10;
+        background-color: xpans.$extra-dark-purple-translucent;
+        /*backdrop-filter: sepia(1) hue-rotate(-140deg) saturate(4) blur(1rem);*/
+        backdrop-filter: blur(0.8rem);
+        position: fixed;
+        width: 100vw;
+        top: 0;
+        nav {
+            @include xpans.content_width(1200px);
+            height: menu-bar.$menu-bar-height;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        box-shadow: 0 0 0.8rem xpans.$extra-dark-purple;
+        transition:
+            box-shadow 250ms ease-in-out,
+            background-color 250ms ease-in-out,
+            backdrop-filter 250ms ease-in-out;
+
+        &.overlay-on {
+            box-shadow: 0 0 0rem xpans.$extra-dark-purple-transparent;
+            background-color: xpans.$extra-dark-purple-transparent;
+            backdrop-filter: blur(0rem);
+        }
+    }
+    .animate {
+        animation-name: slideDown;
+        animation-duration: 1s;
+        animation-timing-function: ease-in-out;
+    }
+</style>

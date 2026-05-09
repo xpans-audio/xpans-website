@@ -1,0 +1,72 @@
+<div class="hamburger-button">
+    <input type="checkbox" id="menu-button" />
+    <div class="bars" inert>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</div>
+<style lang="scss">
+    @use "../../styles/xpans";
+    .hamburger-button {
+        display: none;
+        height: 1.6em;
+        width: 1.6em;
+        margin-left: 0.8em;
+    }
+    .bars {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        height: 1.6em;
+    }
+    span {
+        border-radius: 0.1em;
+        z-index: 10;
+        width: 1.6em;
+        height: 0.2em;
+        background-color: xpans.$extra-light-purple;
+        transition:
+            filter 250ms ease-in-out,
+            opacity 250ms ease-in-out,
+            transform 250ms ease-in-out;
+    }
+    span:hover {
+        height: 0.4rem;
+    }
+    input {
+        position: absolute;
+        margin: 0;
+        padding: 0;
+        display: none;
+        width: 3rem;
+        height: 4rem;
+        top: 0;
+        z-index: 10;
+        cursor: pointer;
+    }
+    @media screen and (max-width: 50rem) {
+        .hamburger-button {
+            display: block;
+        }
+        input {
+            opacity: 0;
+            appearance: none;
+            display: block;
+        }
+        input:checked ~ .bars {
+            span:nth-child(1) {
+                transform: rotate(-45deg) translateY(0.35em) translateX(-0.4em);
+            }
+            span:nth-child(2) {
+                filter: blur(0.8rem);
+                opacity: 0;
+                transform: scale(0);
+            }
+            span:nth-child(3) {
+                transform: rotate(45deg) translateY(-0.35em) translateX(-0.4em);
+            }
+        }
+    }
+</style>

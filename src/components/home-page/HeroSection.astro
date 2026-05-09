@@ -1,0 +1,44 @@
+---
+import HeroLightArray from "./HeroLightArray.astro";
+---
+
+<div>
+    <HeroLightArray posX="0% + 4rem" posY="20%" />
+    <HeroLightArray posX="100% - 4.8rem" posY="70%" />
+    <p>an open ecosystem for spatial audio</p>
+</div>
+<style lang="scss">
+    @use "../../styles/xpans";
+    @keyframes hero-textFadeIn {
+        0% {
+            color: transparent;
+            transform: translateX(-4rem);
+            filter: blur(0.8rem);
+        }
+        50% {
+            color: transparent;
+            transform: translateX(-4rem);
+            filter: blur(0.8rem);
+        }
+        100% {
+            color: xpans.$extra-light-purple;
+            transform: translateX(0rem);
+            filter: blur(0);
+        }
+    }
+    p {
+        position: fixed;
+        bottom: 0 + 1.6rem;
+        width: 100%;
+        animation-name: hero-textFadeIn;
+        animation-duration: 2s;
+        max-width: 20rem;
+        margin: 0;
+        font-weight: 500;
+    }
+    div {
+        transform-style: preserve-3d;
+        z-index: -1;
+        height: 70vh;
+    }
+</style>

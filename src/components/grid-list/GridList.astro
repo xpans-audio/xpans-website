@@ -1,0 +1,13 @@
+<div>
+    <slot />
+</div>
+
+<style lang="scss">
+    div {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        row-gap: 0.8rem;
+        column-gap: 1.6rem;
+        margin-top: 0.8rem;
+    }
+</style>
