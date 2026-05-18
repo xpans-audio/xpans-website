@@ -131,7 +131,7 @@ offered in xpans' [Essential Plugins](/create/essential-plugins) suite
 or at full speed using [Frontier](/create/frontier).
 
 All xpans rendering applications use xpans' own 
-[Violet rendering engine](https://github.com/xpans-audio/xpans_violet)
+[Violet rendering engine](https://github.com/xpans-audio/violet)
 under the hood.
 
 At the time of writing, I've implemented a few rendering modes: 
